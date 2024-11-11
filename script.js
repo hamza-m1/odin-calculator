@@ -1,4 +1,5 @@
-
+const displayText = document.querySelector('#display')
+const inputButtons = document.querySelectorAll('.displayable')
 
 
 function add(num1, num2) {
@@ -20,6 +21,7 @@ function divide(num1, num2) {
 let number1;
 let number2;
 let operator;
+let equation = ''
 
 function operate(number1, number2, operator) {
   result = 0
@@ -40,8 +42,10 @@ function operate(number1, number2, operator) {
   return result
 }
 
-// number1 = 2
-// number2 = 4
-// operator = '/'
-
-// console.log(operate(number1, number2, operator))
+inputButtons.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    displayText.innerHTML += e.target.innerText
+    equation += e.target.innerHTML
+    console.log(equation)
+  })
+})

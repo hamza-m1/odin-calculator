@@ -14,7 +14,7 @@
     padding: 5px;
 }
 
-#display {
+#display-container {
     border: solid blue;
     height: 15%;
     width: 95%;
