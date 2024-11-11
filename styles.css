@@ -48,3 +48,7 @@ button {
     flex: 1 0 0;
     font-size: 25px;
 }
+
+#immediate-text {
+    text-align: right;
+}
