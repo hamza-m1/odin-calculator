@@ -3,6 +3,7 @@ let number2 = ''
 let operator = ''
 let equation = ''
 let currentNumber = ''
+let secondOperatorCheck = false
 
 function add(num1, num2) {
   return num1 + num2
@@ -66,6 +67,7 @@ numberButtons.forEach((button) => {
 operatorButtons.forEach((button) => {
   button.addEventListener('click', (e) => {
     equation += e.target.innerHTML
+    operator = e.target.innerHTML
     EquationText.innerHTML += e.target.innerText
     if (!number1) {
       number1 = +currentNumber
@@ -74,6 +76,15 @@ operatorButtons.forEach((button) => {
       number2 = +currentNumber
       currentNumber = ''
     }
+    console.log(equation)
   })
 })
 
+equalsButton.addEventListener('click', (e) => {
+  if (number1) {
+    number2 = +currentNumber
+    currentNumber = ''
+  }
+  let result = operate(number1, number2, operator)
+  immediateText.innerHTML = result
+})
