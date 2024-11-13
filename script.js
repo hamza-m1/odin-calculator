@@ -66,7 +66,7 @@ operatorButtons.forEach((button) => {
 })
 
 function evaluateAndShowResult() {
-  result = operate(number1, number2, operator)
+  result = Math.round(operate(number1, number2, operator) * 100000) / 100000
   immediateText.innerHTML = result
   number1 = +result
   number2 = ''
