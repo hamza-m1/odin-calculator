@@ -1,9 +1,5 @@
 const immediateText = document.querySelector('#immediate-text')
-const numberButtons = document.querySelectorAll('.number')
-const operatorButtons = document.querySelectorAll('.operator')
-const equalsButton = document.querySelector('#equals')
-const clearButton = document.querySelector('#clear')
-const backSpaceButton = document.querySelector('#backSpace')
+const buttons = document.querySelectorAll('button')
 
 let number1 = ''
 let number2 = ''
@@ -46,6 +42,10 @@ function operate(number1, number2, operator) {
   return result
 }
 
+function updateDisplay(value) {
+
+}
+
 function evaluateAndShowResult() {
   if (number2 === 0 && operator === '/') {
     clearCalculator()
@@ -85,54 +85,56 @@ function checkForMultipleDecimals(currentChar) {
   }
 }
 
-numberButtons.forEach((button) => {
-  button.addEventListener('click', (e) => {
-    if (checkForMultipleDecimals(e.target.innerHTML)) return;
-    if (resultCheck) {
-      clearCalculator()
-      resultCheck = false
-    }
-    currentNumber += e.target.innerHTML
-    immediateText.innerHTML = currentNumber
-  })
-})
-
-operatorButtons.forEach((button) => {
-  button.addEventListener('click', (e) => {
-    if (!number1) {
-      number1 = +currentNumber
-      currentNumber = ''
-    } else if (!number2 && currentNumber != '') {
-      number2 = +currentNumber
-      currentNumber = ''
-      evaluateAndShowResult()
-    }
-    operator = e.target.innerHTML
+function handleNumber(number) {
+  if (checkForMultipleDecimals(number)) return;
+  if (resultCheck) {
+    clearCalculator()
     resultCheck = false
-  })
-})
+  }
+  currentNumber += number
+  immediateText.innerHTML = currentNumber
+}
 
-equalsButton.addEventListener('click', (e) => {
+function handleOperator(op) {
+  if (!number1) {
+    number1 = +currentNumber
+    currentNumber = ''
+  } else if (!number2 && currentNumber != '') {
+    number2 = +currentNumber
+    currentNumber = ''
+    evaluateAndShowResult()
+  }
+  operator = op
+  resultCheck = false
+}
+
+function handleEquals() {
   if (number1 != '' && currentNumber != '') {
     number2 = +currentNumber
     currentNumber = ''
     evaluateAndShowResult()
   }
-})
+}
 
-clearButton.addEventListener('click', () => {
-  clearCalculator()
-})
-
-backSpaceButton.addEventListener('click', () => {
+function handleBackSpace() {
   if (currentNumber !== '') {
     currentNumber = currentNumber.substring(0, currentNumber.length - 1)
     immediateText.innerHTML = currentNumber
   }
-})
+}
 
-// console.log('current number', currentNumber)
-// console.log('number2', number1)
-// console.log('number2', number2)
-// console.log('result', result)
-// console.log('operator', operator)
+buttons.forEach(button => {
+  button.addEventListener('click', (e) => {
+    if (button.classList.contains('number')) {
+      handleNumber(e.target.innerHTML)
+    } else if (button.classList.contains('operator')) {
+      handleOperator(e.target.innerHTML)
+    } else if (button.id === 'equals') {
+      handleEquals()
+    } else if (button.id === 'clear') {
+      clearCalculator()
+    } else if (button.id === 'backSpace') {
+      handleBackSpace()
+    }
+  })
+})
