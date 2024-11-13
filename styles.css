@@ -64,6 +64,7 @@ button {
     margin-right: 8px;
 }
 
-#equals {
-    flex: 2.06 0 0;
+#equals,
+#backSpace {
+    flex: 2.05 0 0;
 }
