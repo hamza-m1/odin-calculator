@@ -4,7 +4,6 @@ const operatorButtons = document.querySelectorAll('.operator')
 const equalsButton = document.querySelector('#equals')
 const clearButton = document.querySelector('#clear')
 const backSpaceButton = document.querySelector('#backSpace')
-const negativeButton = document.querySelector('#negative')
 
 let number1 = ''
 let number2 = ''
@@ -12,7 +11,6 @@ let currentNumber = ''
 let operator = ''
 let result;
 let resultCheck = false
-// let negativeCheck = false
 
 function add(num1, num2) {
   return num1 + num2
@@ -59,6 +57,7 @@ function evaluateAndShowResult() {
   number1 = +result
   number2 = ''
   resultCheck = true
+  negativeCheck = false
 }
 
 function limitLength(string) {
@@ -131,11 +130,6 @@ backSpaceButton.addEventListener('click', () => {
     immediateText.innerHTML = currentNumber
   }
 })
-
-// negativeButton.addEventListener('click', () => {
-//   currentNumber = '-' + currentNumber
-//   immediateText.innerHTML = currentNumber
-// })
 
 // console.log('current number', currentNumber)
 // console.log('number2', number1)
