@@ -4,12 +4,15 @@ const operatorButtons = document.querySelectorAll('.operator')
 const equalsButton = document.querySelector('#equals')
 const clearButton = document.querySelector('#clear')
 const backSpaceButton = document.querySelector('#backSpace')
+const negativeButton = document.querySelector('#negative')
 
 let number1 = ''
 let number2 = ''
 let currentNumber = ''
 let operator = ''
 let result;
+let resultCheck = false
+// let negativeCheck = false
 
 function add(num1, num2) {
   return num1 + num2
@@ -55,6 +58,7 @@ function evaluateAndShowResult() {
   immediateText.innerHTML = result
   number1 = +result
   number2 = ''
+  resultCheck = true
 }
 
 function limitLength(string) {
@@ -85,6 +89,10 @@ function checkForMultipleDecimals(currentChar) {
 numberButtons.forEach((button) => {
   button.addEventListener('click', (e) => {
     if (checkForMultipleDecimals(e.target.innerHTML)) return;
+    if (resultCheck) {
+      clearCalculator()
+      resultCheck = false
+    }
     currentNumber += e.target.innerHTML
     immediateText.innerHTML = currentNumber
   })
@@ -101,6 +109,7 @@ operatorButtons.forEach((button) => {
       evaluateAndShowResult()
     }
     operator = e.target.innerHTML
+    resultCheck = false
   })
 })
 
@@ -122,3 +131,14 @@ backSpaceButton.addEventListener('click', () => {
     immediateText.innerHTML = currentNumber
   }
 })
+
+// negativeButton.addEventListener('click', () => {
+//   currentNumber = '-' + currentNumber
+//   immediateText.innerHTML = currentNumber
+// })
+
+// console.log('current number', currentNumber)
+// console.log('number2', number1)
+// console.log('number2', number2)
+// console.log('result', result)
+// console.log('operator', operator)

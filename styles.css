@@ -44,19 +44,19 @@
     gap: 5px;
 }
 
+button {
+    flex: 1 0 0;
+    font-size: 25px;
+    border-radius: 5px;
+    background-color: rgb(115, 175, 218);
+}
+
 .number {
     background-color: skyblue;
 }
 
 .operator {
     background-color: rgb(89, 191, 231);
-}
-
-button {
-    flex: 1 0 0;
-    font-size: 25px;
-    border-radius: 5px;
-    background-color: rgb(115, 175, 218);
 }
 
 #immediate-text {
