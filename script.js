@@ -36,7 +36,12 @@ function operate(number1, number2, operator) {
       result = multiply(number1, number2)
       break;
     case '/':
-      result = divide(number1, number2)
+      if (number2 === 0) {
+        alert('Cannot divide by zero')
+        result = number1
+      } else {
+        result = divide(number1, number2)
+      }
       break
   }
   return result
@@ -44,20 +49,6 @@ function operate(number1, number2, operator) {
 
 function updateDisplay(value) {
   displayText.innerHTML = value
-}
-
-function evaluateAndShowResult() {
-  if (number2 === 0 && operator === '/') {
-    clearCalculator()
-    updateDisplay('why :-|')
-    return;
-  }
-  result = limitLength(operate(number1, number2, operator))
-  updateDisplay(result)
-  number1 = +result
-  number2 = ''
-  resultCheck = true
-  negativeCheck = false
 }
 
 function limitLength(string) {
@@ -68,6 +59,14 @@ function limitLength(string) {
     string = string.substring(0, 12)
   }
   return string
+}
+
+function evaluateAndShowResult() {
+  result = limitLength(operate(number1, number2, operator))
+  updateDisplay(result)
+  number1 = +result
+  number2 = ''
+  resultCheck = true
 }
 
 function clearCalculator() {
