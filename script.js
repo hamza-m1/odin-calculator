@@ -67,6 +67,11 @@ operatorButtons.forEach((button) => {
 })
 
 function evaluateAndShowResult() {
+  if (number2 === 0 && operator === '/') {
+    clearCalculator()
+    immediateText.innerHTML = 'why :-|'
+    return;
+  }
   result = limitLength(operate(number1, number2, operator))
   immediateText.innerHTML = result
   number1 = +result
@@ -83,6 +88,15 @@ function limitLength(string) {
   return string
 }
 
+function clearCalculator() {
+  currentNumber = ''
+  number1 = ''
+  number2 = ''
+  operator = ''
+  result = ''
+  immediateText.innerHTML = ''
+}
+
 equalsButton.addEventListener('click', (e) => {
   if (number1 != '' && currentNumber != '') {
     number2 = +currentNumber
@@ -92,12 +106,7 @@ equalsButton.addEventListener('click', (e) => {
 })
 
 clearButton.addEventListener('click', () => {
-  currentNumber = ''
-  number1 = ''
-  number2 = ''
-  operator = ''
-  result = ''
-  immediateText.innerHTML = ''
+  clearCalculator()
 })
 
 // console.log(equation)
