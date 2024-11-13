@@ -1,5 +1,3 @@
-
-
 function add(num1, num2) {
   return num1 + num2
 }
@@ -17,7 +15,6 @@ function divide(num1, num2) {
 }
 
 function operate(number1, number2, operator) {
-  result = 0
   switch (operator) {
     case '+':
       result = add(number1, number2)
@@ -45,19 +42,12 @@ let number1 = ''
 let number2 = ''
 let currentNumber = ''
 let operator = ''
-let equation = ''
-// let additionalOperatorCheck = false
 let result;
-// let resultCheck = false
-// let operatorCheck = false
-
 
 numberButtons.forEach((button) => {
   button.addEventListener('click', (e) => {
     currentNumber += e.target.innerHTML
-    // equation += e.target.innerHTML
     immediateText.innerHTML = currentNumber
-    // operatorCheck = false
   })
 })
 
@@ -71,12 +61,7 @@ operatorButtons.forEach((button) => {
       currentNumber = ''
       evaluateAndShowResult()
     }
-    // if (!operatorCheck) {
-    //   equation += e.target.innerHTML
-    // }
     operator = e.target.innerHTML
-    // operatorCheck = true
-    // additionalOperatorCheck = true
   })
 })
 
