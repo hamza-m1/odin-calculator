@@ -1,4 +1,4 @@
-const immediateText = document.querySelector('#immediate-text')
+const displayText = document.querySelector('#immediate-text')
 const buttons = document.querySelectorAll('button')
 
 let number1 = ''
@@ -43,17 +43,17 @@ function operate(number1, number2, operator) {
 }
 
 function updateDisplay(value) {
-
+  displayText.innerHTML = value
 }
 
 function evaluateAndShowResult() {
   if (number2 === 0 && operator === '/') {
     clearCalculator()
-    immediateText.innerHTML = 'why :-|'
+    updateDisplay('why :-|')
     return;
   }
   result = limitLength(operate(number1, number2, operator))
-  immediateText.innerHTML = result
+  updateDisplay(result)
   number1 = +result
   number2 = ''
   resultCheck = true
@@ -76,7 +76,7 @@ function clearCalculator() {
   number2 = ''
   operator = ''
   result = ''
-  immediateText.innerHTML = ''
+  updateDisplay('')
 }
 
 function checkForMultipleDecimals(currentChar) {
@@ -92,7 +92,7 @@ function handleNumber(number) {
     resultCheck = false
   }
   currentNumber += number
-  immediateText.innerHTML = currentNumber
+  updateDisplay(currentNumber)
 }
 
 function handleOperator(op) {
@@ -119,7 +119,7 @@ function handleEquals() {
 function handleBackSpace() {
   if (currentNumber !== '') {
     currentNumber = currentNumber.substring(0, currentNumber.length - 1)
-    immediateText.innerHTML = currentNumber
+    updateDisplay(currentNumber)
   }
 }
 
