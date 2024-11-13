@@ -47,6 +47,9 @@ let result;
 
 numberButtons.forEach((button) => {
   button.addEventListener('click', (e) => {
+    if (currentNumber.includes('.')) {
+      if (e.target.innerHTML === '.') return;
+    }
     currentNumber += e.target.innerHTML
     immediateText.innerHTML = currentNumber
   })
