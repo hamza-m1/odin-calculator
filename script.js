@@ -68,13 +68,13 @@ operatorButtons.forEach((button) => {
 function evaluateAndShowResult() {
   result = operate(number1, number2, operator)
   immediateText.innerHTML = result
-  number1 = result
+  number1 = +result
   number2 = ''
 }
 
 equalsButton.addEventListener('click', (e) => {
   if (number1 != '' && currentNumber != '') {
-    number2 = + currentNumber
+    number2 = +currentNumber
     currentNumber = ''
     evaluateAndShowResult()
   }
