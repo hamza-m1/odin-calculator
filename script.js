@@ -66,10 +66,20 @@ operatorButtons.forEach((button) => {
 })
 
 function evaluateAndShowResult() {
-  result = Math.round(operate(number1, number2, operator) * 100000) / 100000
+  result = limitLength(operate(number1, number2, operator))
   immediateText.innerHTML = result
   number1 = +result
   number2 = ''
+}
+
+function limitLength(string) {
+  if (typeof string === 'number') {
+    string = string.toString()
+  }
+  if (string.length > 12) {
+    string = string.substring(0, 12)
+  }
+  return string
 }
 
 equalsButton.addEventListener('click', (e) => {
