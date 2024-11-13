@@ -66,7 +66,7 @@ operatorButtons.forEach((button) => {
     if (!number1) {
       number1 = +currentNumber
       currentNumber = ''
-    } else if (!number2) {
+    } else if (!number2 && currentNumber != '') {
       number2 = +currentNumber
       currentNumber = ''
       evaluateAndShowResult()
