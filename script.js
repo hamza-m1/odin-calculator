@@ -1,10 +1,4 @@
-let number1 = ''
-let number2 = ''
-let operator = ''
-let equation = ''
-let currentNumber = ''
-let secondOperatorCheck = false
-let result;
+
 
 function add(num1, num2) {
   return num1 + num2
@@ -47,53 +41,67 @@ const numberButtons = document.querySelectorAll('.number')
 const operatorButtons = document.querySelectorAll('.operator')
 const equalsButton = document.querySelector('#equals')
 
-// function addDisplayText(e) {
-//   equation += e.target.innerHTML
-//   EquationText.innerHTML += e.target.innerText
-//   // immediateText.innerHTML += e.target.innerText
-// }
+let number1 = ''
+let number2 = ''
+let currentNumber = ''
+let operator = ''
+let equation = ''
+let additionalOperatorCheck = false
+let result;
+let resultCheck = false
+let operatorCheck = false
 
-// function afterOperatorIsCalled(e) {
-//   number1 = equation
-// }
 
 numberButtons.forEach((button) => {
   button.addEventListener('click', (e) => {
-    secondOperatorCheck = false
-    equation += e.target.innerHTML
     currentNumber += e.target.innerHTML
-    EquationText.innerHTML += e.target.innerText
+    equation += e.target.innerHTML
+    immediateText.innerHTML = currentNumber
+    operatorCheck = false
+    console.log(equation)
+    console.log(`number 1: ${number1}`)
+    console.log(`number 2: ${number2}`)
   })
 })
 
 operatorButtons.forEach((button) => {
   button.addEventListener('click', (e) => {
-    if (secondOperatorCheck) return;
     if (!number1) {
       number1 = +currentNumber
       currentNumber = ''
     } else if (!number2) {
       number2 = +currentNumber
       currentNumber = ''
+      equalsButtonFunction()
+      immediateText.innerHTML = result
     }
-
-    if (number2) {
-      number1 = result
-      number2 = ''
+    if (!operatorCheck) {
+      equation += e.target.innerHTML
     }
-    equation += e.target.innerHTML
     operator = e.target.innerHTML
-    EquationText.innerHTML += e.target.innerText
-    secondOperatorCheck = true
+    operatorCheck = true
+    additionalOperatorCheck = true
+    console.log(equation)
+    console.log(`number 1: ${number1}`)
+    console.log(`number 2: ${number2}`)
   })
 })
 
+function equalsButtonFunction() {
+  result = operate(number1, number2, operator)
+  immediateText.innerHTML = result
+  number1 = result
+  number2 = ''
+  resultCheck = true
+  console.log(equation)
+  console.log(`number 1: ${number1}`)
+  console.log(`number 2: ${number2}`)
+}
+
 equalsButton.addEventListener('click', (e) => {
-  if (number1 && currentNumber != '') {
-    console.log(currentNumber)
-    number2 = +currentNumber
+  if (number1 != '' && currentNumber != '') {
+    number2 = + currentNumber
     currentNumber = ''
-    result = operate(number1, number2, operator)
-    immediateText.innerHTML = result
+    equalsButtonFunction()
   }
 })
