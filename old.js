@@ -36,7 +36,7 @@ function operatorButtonsFunction(e) {
     secondOperatorCheck = true
 }
 
-function equalsButtonFunction(e) {
+function evaluateAndShowResult(e) {
     if (number1 && currentNumber != '') {
         console.log(currentNumber)
         number2 = +currentNumber

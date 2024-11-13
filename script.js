@@ -46,21 +46,18 @@ let number2 = ''
 let currentNumber = ''
 let operator = ''
 let equation = ''
-let additionalOperatorCheck = false
+// let additionalOperatorCheck = false
 let result;
-let resultCheck = false
-let operatorCheck = false
+// let resultCheck = false
+// let operatorCheck = false
 
 
 numberButtons.forEach((button) => {
   button.addEventListener('click', (e) => {
     currentNumber += e.target.innerHTML
-    equation += e.target.innerHTML
+    // equation += e.target.innerHTML
     immediateText.innerHTML = currentNumber
-    operatorCheck = false
-    console.log(equation)
-    console.log(`number 1: ${number1}`)
-    console.log(`number 2: ${number2}`)
+    // operatorCheck = false
   })
 })
 
@@ -72,36 +69,32 @@ operatorButtons.forEach((button) => {
     } else if (!number2) {
       number2 = +currentNumber
       currentNumber = ''
-      equalsButtonFunction()
-      immediateText.innerHTML = result
+      evaluateAndShowResult()
     }
-    if (!operatorCheck) {
-      equation += e.target.innerHTML
-    }
+    // if (!operatorCheck) {
+    //   equation += e.target.innerHTML
+    // }
     operator = e.target.innerHTML
-    operatorCheck = true
-    additionalOperatorCheck = true
-    console.log(equation)
-    console.log(`number 1: ${number1}`)
-    console.log(`number 2: ${number2}`)
+    // operatorCheck = true
+    // additionalOperatorCheck = true
   })
 })
 
-function equalsButtonFunction() {
+function evaluateAndShowResult() {
   result = operate(number1, number2, operator)
   immediateText.innerHTML = result
   number1 = result
   number2 = ''
-  resultCheck = true
-  console.log(equation)
-  console.log(`number 1: ${number1}`)
-  console.log(`number 2: ${number2}`)
 }
 
 equalsButton.addEventListener('click', (e) => {
   if (number1 != '' && currentNumber != '') {
     number2 = + currentNumber
     currentNumber = ''
-    equalsButtonFunction()
+    evaluateAndShowResult()
   }
 })
+
+// console.log(equation)
+// console.log(`number 1: ${number1}`)
+// console.log(`number 2: ${number2}`)
