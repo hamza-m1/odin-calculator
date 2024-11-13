@@ -1,3 +1,16 @@
+const immediateText = document.querySelector('#immediate-text')
+const numberButtons = document.querySelectorAll('.number')
+const operatorButtons = document.querySelectorAll('.operator')
+const equalsButton = document.querySelector('#equals')
+const clearButton = document.querySelector('#clear')
+const backSpaceButton = document.querySelector('#backSpace')
+
+let number1 = ''
+let number2 = ''
+let currentNumber = ''
+let operator = ''
+let result;
+
 function add(num1, num2) {
   return num1 + num2
 }
@@ -32,44 +45,6 @@ function operate(number1, number2, operator) {
   return result
 }
 
-// const EquationText = document.querySelector('#full-equation')
-const immediateText = document.querySelector('#immediate-text')
-const numberButtons = document.querySelectorAll('.number')
-const operatorButtons = document.querySelectorAll('.operator')
-const equalsButton = document.querySelector('#equals')
-const clearButton = document.querySelector('#clear')
-const backSpaceButton = document.querySelector('#backSpace')
-
-let number1 = ''
-let number2 = ''
-let currentNumber = ''
-let operator = ''
-let result;
-
-numberButtons.forEach((button) => {
-  button.addEventListener('click', (e) => {
-    if (currentNumber.includes('.')) {
-      if (e.target.innerHTML === '.') return;
-    }
-    currentNumber += e.target.innerHTML
-    immediateText.innerHTML = currentNumber
-  })
-})
-
-operatorButtons.forEach((button) => {
-  button.addEventListener('click', (e) => {
-    if (!number1) {
-      number1 = +currentNumber
-      currentNumber = ''
-    } else if (!number2 && currentNumber != '') {
-      number2 = +currentNumber
-      currentNumber = ''
-      evaluateAndShowResult()
-    }
-    operator = e.target.innerHTML
-  })
-})
-
 function evaluateAndShowResult() {
   if (number2 === 0 && operator === '/') {
     clearCalculator()
@@ -101,6 +76,34 @@ function clearCalculator() {
   immediateText.innerHTML = ''
 }
 
+function checkForMultipleDecimals(currentChar) {
+  if (currentNumber.includes('.') && currentChar === '.') {
+    return true
+  }
+}
+
+numberButtons.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    if (checkForMultipleDecimals(e.target.innerHTML)) return;
+    currentNumber += e.target.innerHTML
+    immediateText.innerHTML = currentNumber
+  })
+})
+
+operatorButtons.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    if (!number1) {
+      number1 = +currentNumber
+      currentNumber = ''
+    } else if (!number2 && currentNumber != '') {
+      number2 = +currentNumber
+      currentNumber = ''
+      evaluateAndShowResult()
+    }
+    operator = e.target.innerHTML
+  })
+})
+
 equalsButton.addEventListener('click', (e) => {
   if (number1 != '' && currentNumber != '') {
     number2 = +currentNumber
@@ -119,7 +122,3 @@ backSpaceButton.addEventListener('click', () => {
     immediateText.innerHTML = currentNumber
   }
 })
-
-// console.log(equation)
-// console.log(`number 1: ${number1}`)
-// console.log(`number 2: ${number2}`)
