@@ -38,6 +38,7 @@ const numberButtons = document.querySelectorAll('.number')
 const operatorButtons = document.querySelectorAll('.operator')
 const equalsButton = document.querySelector('#equals')
 const clearButton = document.querySelector('#clear')
+const backSpaceButton = document.querySelector('#backSpace')
 
 let number1 = ''
 let number2 = ''
@@ -110,6 +111,13 @@ equalsButton.addEventListener('click', (e) => {
 
 clearButton.addEventListener('click', () => {
   clearCalculator()
+})
+
+backSpaceButton.addEventListener('click', () => {
+  if (currentNumber !== '') {
+    currentNumber = currentNumber.substring(0, currentNumber.length - 1)
+    immediateText.innerHTML = currentNumber
+  }
 })
 
 // console.log(equation)
