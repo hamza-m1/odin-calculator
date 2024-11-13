@@ -37,7 +37,7 @@ function operate(number1, number2, operator) {
       break;
     case '/':
       if (number2 === 0) {
-        alert('Cannot divide by zero')
+        alert('You cannot divide by zero silly')
         result = number1
       } else {
         result = divide(number1, number2)
