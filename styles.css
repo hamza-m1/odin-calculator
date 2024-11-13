@@ -12,13 +12,18 @@
     margin: auto;
     margin-top: 20px;
     padding: 5px;
+    background-color: steelblue;
 }
 
 #display-container {
-    border: solid blue;
+    /* border: solid blue; */
     height: 15%;
     width: 95%;
     margin: 4% auto;
+    background-color: rgb(229, 229, 229);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 #button-container {
@@ -29,7 +34,6 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
-    padding: 5px;
 }
 
 .row {
@@ -40,16 +44,26 @@
     gap: 5px;
 }
 
-#equals {
-    flex: 2.07 0 0;
+.number {
+    background-color: skyblue;
+}
+
+.operator {
+    background-color: rgb(89, 191, 231);
 }
 
 button {
     flex: 1 0 0;
     font-size: 25px;
+    border-radius: 5px;
+    background-color: rgb(115, 175, 218);
 }
 
 #immediate-text {
-    text-align: right;
-    font-size: 35px;
+    font-size: 50px;
+    margin-right: 8px;
+}
+
+#equals {
+    flex: 2.06 0 0;
 }
