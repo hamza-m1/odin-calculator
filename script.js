@@ -32,11 +32,12 @@ function operate(number1, number2, operator) {
   return result
 }
 
-const EquationText = document.querySelector('#full-equation')
+// const EquationText = document.querySelector('#full-equation')
 const immediateText = document.querySelector('#immediate-text')
 const numberButtons = document.querySelectorAll('.number')
 const operatorButtons = document.querySelectorAll('.operator')
 const equalsButton = document.querySelector('#equals')
+const clearButton = document.querySelector('#clear')
 
 let number1 = ''
 let number2 = ''
@@ -88,6 +89,15 @@ equalsButton.addEventListener('click', (e) => {
     currentNumber = ''
     evaluateAndShowResult()
   }
+})
+
+clearButton.addEventListener('click', () => {
+  currentNumber = ''
+  number1 = ''
+  number2 = ''
+  operator = ''
+  result = ''
+  immediateText.innerHTML = ''
 })
 
 // console.log(equation)
